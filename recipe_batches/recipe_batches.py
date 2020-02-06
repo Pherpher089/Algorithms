@@ -1,29 +1,34 @@
 #!/usr/bin/python
-
 import math
 
-
 def recipe_batches(recipe, ingredients):
+
+    # Convert dictionary values to lists
     _recipe = list(recipe.values())
     _ingredients = list(ingredients.values())
-    print(f"_recipe: {_recipe}")
-    print(f"_ingredients: {_ingredients}")
+
+    # If not all ingredients are present, return 0
     if(len(_ingredients) < len(_recipe)):
         return 0
 
+    # Create an array to recipe[i] // ingredients[i]  
     batch_counts = [0] * len(_recipe)
 
+    # Fill the array with those quotients
     for i in range(len(_recipe)):
         batch_counts[i] = _ingredients[i] // _recipe[i]
 
-    print(f"batch_counts: {batch_counts}")
+    # Assign the first element as the smallest value
     min_batch_count = batch_counts[0]
 
+    # Compare each value to the smallest value and 
+    # replace the smallest value if the compaired value is smaller
     for i in range(1, len(_recipe)):
         if batch_counts[i] < min_batch_count:
             min_batch_count = batch_counts[i]
-    return min_batch_count
 
+    # The smallest value in that list is our answer
+    return min_batch_count
 
 if __name__ == '__main__':
     # Change the entries of these dictionaries to test
